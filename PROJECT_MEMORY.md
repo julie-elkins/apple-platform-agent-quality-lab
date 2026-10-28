@@ -34,6 +34,8 @@ or personal data.
 - Baseline/negative-control run summary and history, including highlighted
   failures and an explicit explanation that baseline reruns are fresh runs,
   not automatic repairs.
+- Failure analysis and recommended remediation panel that describes the
+  observed failure, corrective action, and rerun step without changing code.
 - Xcode project and `AppIntentsTesting` system-boundary test target.
 
 ## Verified state
@@ -48,6 +50,8 @@ or personal data.
   changes for both the normal pass and negative-control failure paths.
 - The complete visible sequence works: baseline `PASS` → negative control
   `FAIL` as expected → baseline `PASS` restored.
+- The negative-control panel recommends using `CreateFollowUpIntent` and
+  requiring a successful tool result before claiming task completion.
 - The launch fix set the Xcode target's `EXECUTABLE_NAME` to
   `apple-agent-quality-lab`, matching `Info.plist` and the SwiftPM fallback.
 
