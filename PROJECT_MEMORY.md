@@ -41,6 +41,9 @@ or personal data.
 - Separate Local Data Mode window for a user-selected Markdown, text, or JSON
   file. It is read-only, limits input to 1 MB, shows a source preview, and
   records `local-file.read` with `readOnly=true` in the evidence trace.
+- Local Data Mode keeps the source preview, evaluation details, and evidence
+  trace in separate scrollable areas so long model responses cannot overlap
+  the next section.
 - Local Data Mode uses the same response, trajectory, and end-to-end gate as
   the synthetic scenarios but never changes the stable baseline result. It
   uses a deterministic grounded fallback and, when available, follows with an
@@ -66,7 +69,9 @@ or personal data.
   still pass after the UI update.
 - The packaged app includes an `Open local data mode` button. The separate
   window was visually verified with its read-only safety explanation, file
-  picker, source preview, result, and evidence-trace areas.
+  picker, source preview, result, evaluation-details, and evidence-trace
+  areas. The evaluation-details area was corrected from a fixed-height label to
+  a scrollable text view after a long README response exposed overlap.
 - The launch fix set the Xcode target's `EXECUTABLE_NAME` to
   `apple-agent-quality-lab`, matching `Info.plist` and the SwiftPM fallback.
 
