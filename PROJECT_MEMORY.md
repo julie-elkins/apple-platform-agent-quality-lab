@@ -31,6 +31,9 @@ or personal data.
 - Scrollable white trace/notes panel in the native app.
 - Plain-language explanation boxes for the evidence path, buttons, and current
   `PASS` or `FAIL` meaning.
+- Baseline/negative-control run summary and history, including highlighted
+  failures and an explicit explanation that baseline reruns are fresh runs,
+  not automatic repairs.
 - Xcode project and `AppIntentsTesting` system-boundary test target.
 
 ## Verified state
@@ -43,6 +46,8 @@ or personal data.
 - The packaged app launches successfully with `open`.
 - The app's explanation boxes render correctly, and the dynamic result text
   changes for both the normal pass and negative-control failure paths.
+- The complete visible sequence works: baseline `PASS` → negative control
+  `FAIL` as expected → baseline `PASS` restored.
 - The launch fix set the Xcode target's `EXECUTABLE_NAME` to
   `apple-agent-quality-lab`, matching `Info.plist` and the SwiftPM fallback.
 
