@@ -44,12 +44,13 @@ or personal data.
 
 ## Operating-system boundary
 
-The current Mac is running macOS 26.7.1 and is managed by the employer. Even
-macOS 26.7.2 will not satisfy the macOS 27.0 runtime requirement for the
-`AppIntentsTesting` and `Evaluations` execution paths.
+The current Mac is running macOS 26.7.2 and is managed by the employer. This is
+the latest permitted update, but it still does not satisfy the macOS 27.0
+runtime requirement for the `AppIntentsTesting` and `Evaluations` execution
+paths.
 
 The Xcode project uses Xcode 27.1 and the macOS 27 SDK. The native test target
-builds successfully, but `xcodebuild test` cannot execute it on macOS 26.x
+builds successfully, but `xcodebuild test` cannot execute it on macOS 26.7.2
 because the test target's deployment target is macOS 27.0. This is an honest
 environment limitation, not a source failure.
 
