@@ -44,6 +44,9 @@ or personal data.
 - Local Data Mode keeps the source preview, evaluation details, and evidence
   trace in separate scrollable areas so long model responses cannot overlap
   the next section.
+- The main Quality Lab now shows the recommended five-step demo flow, and
+  Local Data Mode shows its four local steps with a visible `Return to Quality
+  Lab` button, so the two-window workflow is explicit.
 - Local Data Mode uses the same response, trajectory, and end-to-end gate as
   the synthetic scenarios but never changes the stable baseline result. It
   uses a deterministic grounded fallback and, when available, follows with an
@@ -67,6 +70,8 @@ or personal data.
   requiring a successful tool result before claiming task completion.
 - The packaged app displays the section titles clearly, and the Swift tests
   still pass after the UI update.
+- The refreshed packaged app visibly shows the numbered workflow in the main
+  window and the local steps plus return button in Local Data Mode.
 - The packaged app includes an `Open local data mode` button. The separate
   window was visually verified with its read-only safety explanation, file
   picker, source preview, result, evaluation-details, and evidence-trace
