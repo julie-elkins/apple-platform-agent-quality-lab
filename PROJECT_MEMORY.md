@@ -1,6 +1,6 @@
 # Project memory
 
-Last updated: 2026-10-27
+Last updated: 2026-10-28
 
 ## Purpose
 
@@ -38,11 +38,19 @@ or personal data.
   observed failure, corrective action, and rerun step without changing code.
 - Visible section titles above every guidance, summary, remediation, and trace
   box so a first-time user can read the interface in order.
+- Separate Local Data Mode window for a user-selected Markdown, text, or JSON
+  file. It is read-only, limits input to 1 MB, shows a source preview, and
+  records `local-file.read` with `readOnly=true` in the evidence trace.
+- Local Data Mode uses the same response, trajectory, and end-to-end gate as
+  the synthetic scenarios but never changes the stable baseline result. It
+  uses a deterministic grounded fallback and, when available, follows with an
+  Apple Foundation Models response.
 - Xcode project and `AppIntentsTesting` system-boundary test target.
 
 ## Verified state
 
-- `swift test`: 3 tests passed.
+- `swift test`: 5 tests passed, including Markdown and JSON local-data
+  importer/evidence checks.
 - `swift run apple-agent-quality-lab --live-foundation-model`:
   4/4 scenarios passed, minimum score 1.00, release gate `PASS`.
 - `./scripts/build-app.sh`: Xcode build succeeds and extracts
@@ -56,6 +64,9 @@ or personal data.
   requiring a successful tool result before claiming task completion.
 - The packaged app displays the section titles clearly, and the Swift tests
   still pass after the UI update.
+- The packaged app includes an `Open local data mode` button. The separate
+  window was visually verified with its read-only safety explanation, file
+  picker, source preview, result, and evidence-trace areas.
 - The launch fix set the Xcode target's `EXECUTABLE_NAME` to
   `apple-agent-quality-lab`, matching `Info.plist` and the SwiftPM fallback.
 
@@ -110,6 +121,9 @@ The negative-control command is expected to exit with status 1.
 - `Sources/AppleAgentQualityLab/AppleEvaluationsAdapter.swift`: supplemental
   Apple Evaluations integration.
 - `Sources/AppleAgentQualityLab/MacOSApp.swift`: native app UI.
+- `Sources/AppleAgentQualityLab/LocalDataMode.swift`: read-only local importer,
+  local-data scenario, and evidence-producing agent.
+- `Sources/AppleAgentQualityLab/LocalDataWindow.swift`: separate local-data UI.
 - `XcodeIntegration/AppleAgentQualityLabIntentTests.swift`: native
   system-boundary tests.
 - `scripts/build-app.sh`: Xcode-first app packaging with SwiftPM fallback.
