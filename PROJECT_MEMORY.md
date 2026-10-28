@@ -29,6 +29,8 @@ or personal data.
 - Two App Shortcuts.
 - Supplemental Apple Evaluations adapter.
 - Scrollable white trace/notes panel in the native app.
+- Plain-language explanation boxes for the evidence path, buttons, and current
+  `PASS` or `FAIL` meaning.
 - Xcode project and `AppIntentsTesting` system-boundary test target.
 
 ## Verified state
@@ -39,6 +41,8 @@ or personal data.
 - `./scripts/build-app.sh`: Xcode build succeeds and extracts
   `Contents/Resources/Metadata.appintents`.
 - The packaged app launches successfully with `open`.
+- The app's explanation boxes render correctly, and the dynamic result text
+  changes for both the normal pass and negative-control failure paths.
 - The launch fix set the Xcode target's `EXECUTABLE_NAME` to
   `apple-agent-quality-lab`, matching `Info.plist` and the SwiftPM fallback.
 
