@@ -47,6 +47,9 @@ or personal data.
 - The main Quality Lab now shows the recommended five-step demo flow, and
   Local Data Mode shows its four local steps with a visible `Return to Quality
   Lab` button, so the two-window workflow is explicit.
+- Both windows now use an outer vertical scroll area for the complete screen,
+  while preserving the inner scroll areas for preview, evaluation details,
+  and evidence traces. This keeps the bottom reachable on shorter monitors.
 - Local Data Mode uses the same response, trajectory, and end-to-end gate as
   the synthetic scenarios but never changes the stable baseline result. It
   uses a deterministic grounded fallback and, when available, follows with an
@@ -72,6 +75,8 @@ or personal data.
   still pass after the UI update.
 - The refreshed packaged app visibly shows the numbered workflow in the main
   window and the local steps plus return button in Local Data Mode.
+- The refreshed main window visibly exposes an app-level vertical scrollbar,
+  confirming that the full workflow remains reachable below the monitor fold.
 - The packaged app includes an `Open local data mode` button. The separate
   window was visually verified with its read-only safety explanation, file
   picker, source preview, result, evaluation-details, and evidence-trace
