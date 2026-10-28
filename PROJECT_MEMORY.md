@@ -36,6 +36,8 @@ or personal data.
   not automatic repairs.
 - Failure analysis and recommended remediation panel that describes the
   observed failure, corrective action, and rerun step without changing code.
+- Visible section titles above every guidance, summary, remediation, and trace
+  box so a first-time user can read the interface in order.
 - Xcode project and `AppIntentsTesting` system-boundary test target.
 
 ## Verified state
@@ -52,6 +54,8 @@ or personal data.
   `FAIL` as expected → baseline `PASS` restored.
 - The negative-control panel recommends using `CreateFollowUpIntent` and
   requiring a successful tool result before claiming task completion.
+- The packaged app displays the section titles clearly, and the Swift tests
+  still pass after the UI update.
 - The launch fix set the Xcode target's `EXECUTABLE_NAME` to
   `apple-agent-quality-lab`, matching `Info.plist` and the SwiftPM fallback.
 
