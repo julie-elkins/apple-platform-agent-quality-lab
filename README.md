@@ -22,7 +22,8 @@ Apple data.
 - Error recovery that reports failure instead of inventing success.
 - Component, trajectory, and end-to-end scores.
 - Supplemental Apple Evaluations metrics when macOS 27 is available.
-- A release decision with `PASS`, `FAIL`, `RERUN REQUIRED`, or `UNAVAILABLE`.
+- A release decision with `PASS`, `FAIL`, `RERUN REQUIRED`, or `UNAVAILABLE`,
+  mapped to the shared evidence vocabulary in the design guide.
 
 ## Run it
 
@@ -32,9 +33,13 @@ swift run apple-agent-quality-lab
 
 The command writes `apple-agent-quality-report.json` in the current directory.
 The report contains the trace, evaluation results, framework availability, and
-release decision. The executable also checks that every scenario produced
-evidence, that the honest error-recovery case remains covered, and that the
-deterministic release gate passes.
+release decision. It also reports the shared vocabulary revision, release
+contract, separate evidence dimensions, and which dimensions were
+`not_evaluated`. The executable checks that every scenario produced evidence,
+that the honest error-recovery and confirmation-boundary cases remain covered,
+and that the deterministic automated release gate passes. That PASS is evidence
+for review, not final approval: the report intentionally keeps human approval
+in a separate pending state.
 
 Open the reviewer-facing native macOS app with:
 
@@ -46,17 +51,17 @@ open "dist/Apple Platform Agent Quality Lab.app"
 The app shows the release decision, each scenario's component, trajectory, and
 end-to-end scores, plus the full trace. The CLI and the app use the same
 evaluation logic.
-Use the negative-control button to run an intentionally wrong tool path and
-observe the gate fail with its trace.
+Use the negative-control button to run intentionally wrong tool and unsupported
+recommendation paths and observe the gate fail with their traces.
 
-The same failure path can be checked without opening the app:
+The same failure paths can be checked without opening the app:
 
 ```bash
 swift run apple-agent-quality-lab --negative-control
 ```
 
 That command is expected to exit with status `1`, because the gate correctly
-rejects the deliberately broken scenario.
+rejects both deliberately broken scenarios.
 
 The app also includes a separate Local Data Mode window. Use it to select a
 de-identified Markdown, text, or JSON file and inspect a grounded local
@@ -102,8 +107,9 @@ run the entity, shortcut, and availability checks, while the Xcode system-
 boundary target compiles but `xcodebuild test` correctly refuses to run it.
 Run the same scheme on macOS 27 or newer to execute the native test.
 
-That boundary is intentional: the project reports `UNAVAILABLE` for missing
-evidence rather than claiming that a native Apple integration ran. The
+That boundary is intentional: the project reports `UNAVAILABLE` for a missing
+framework integration and maps required unavailable evidence to
+`not_evaluated` rather than claiming that a native Apple integration ran. The
 deterministic slice, live Foundation Models probe, and host-compatible tests
 pass locally. Apple Evaluations is supplemental and does not replace the
 custom release gate.
@@ -112,6 +118,8 @@ custom release gate.
 
 - A trace can preserve the evidence needed to inspect an agent decision.
 - Tool correctness and end-to-end completion are separate checks.
+- Grounding evidence, authorization, confirmation, and state transitions are
+  evaluated separately from response fluency.
 - An error path can be a passing result when the agent reports the failure honestly.
 - A release gate can distinguish a passing result from a result that needs a rerun.
 
@@ -125,6 +133,9 @@ custom release gate.
 The current package already contains a native macOS app, real App Intents and
 App Shortcut declarations, an App Entity/query, the live Foundation Models
 adapter, an Apple Evaluations adapter, and the Xcode integration target.
+
+The shared meanings are documented in the
+[Agent Systems Design Guide report vocabulary](https://github.com/julie-elkins/agent-systems-design-guide/blob/main/REPORT_VOCABULARY.md).
 
 ## Interview path
 

@@ -20,6 +20,50 @@ final class AppleAgentQualityLabTests: XCTestCase {
         XCTAssertEqual(shortcuts.count, 2)
     }
 
+    func testConfirmationBoundaryPassesWithoutTakingTheAction() {
+        let scenario = demoScenarios().first { $0.kind == .confirmationRequired }!
+        let run = SyntheticAppleAgent().run(scenario: scenario)
+        let result = EvaluationGate().evaluate(
+            scenario: scenario,
+            traces: run.traces,
+            response: run.response
+        )
+
+        XCTAssertTrue(result.passed)
+        XCTAssertTrue(run.traces.allSatisfy { $0.kind != .toolCall })
+        XCTAssertEqual(
+            run.traces.first { $0.kind == .evaluator }?.metadata["action"],
+            "blocked"
+        )
+    }
+
+    func testUnsupportedRecommendationFailsWithoutEvidence() {
+        let scenario = negativeControlScenarios().first { $0.kind == .unsupportedRecommendation }!
+        let run = SyntheticAppleAgent().run(scenario: scenario)
+        let result = EvaluationGate().evaluate(
+            scenario: scenario,
+            traces: run.traces,
+            response: run.response
+        )
+
+        XCTAssertFalse(result.passed)
+        XCTAssertTrue(result.failures.contains("grounding_evidence_missing"))
+    }
+
+    func testNegativeControlsAreCaughtByGenericEvidenceChecks() {
+        for scenario in negativeControlScenarios() {
+            let run = SyntheticAppleAgent().run(scenario: scenario)
+            let result = EvaluationGate().evaluate(
+                scenario: scenario,
+                traces: run.traces,
+                response: run.response
+            )
+
+            XCTAssertFalse(result.passed, scenario.id)
+            XCTAssertFalse(result.failures.isEmpty, scenario.id)
+        }
+    }
+
     func testAppleEvaluationsReportsCurrentAvailability() async {
         let scenario = demoScenarios()[0]
         let result = EvaluationResult(

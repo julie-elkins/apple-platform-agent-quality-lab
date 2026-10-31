@@ -35,57 +35,115 @@
         ],
         "note" : "Apple Evaluations requires macOS 27.0; the custom gate remains authoritative.",
         "scenarioID" : "honest-error-recovery"
+      },
+      {
+        "availability" : "unavailable",
+        "metrics" : [
+
+        ],
+        "note" : "Apple Evaluations requires macOS 27.0; the custom gate remains authoritative.",
+        "scenarioID" : "confirmation-required"
       }
     ],
     "totalMetrics" : 0
   },
   "decision" : {
     "minimumObservedScore" : 1,
-    "passedScenarios" : 4,
+    "passedScenarios" : 5,
     "reason" : "All scenarios met the response, trajectory, and end-to-end thresholds.",
     "repeatedRunSpread" : 0,
     "status" : "PASS",
-    "totalScenarios" : 4
+    "totalScenarios" : 5
+  },
+  "dimensions" : {
+    "cost" : {
+      "rationale" : "The local synthetic run does not make billable model calls.",
+      "status" : "not_evaluated"
+    },
+    "evaluator_validity" : {
+      "rationale" : "Every evaluator event carried a parseable score and required evidence metadata.",
+      "status" : "passed"
+    },
+    "latency" : {
+      "rationale" : "The local synthetic run does not measure a production latency target.",
+      "status" : "not_evaluated"
+    },
+    "safety" : {
+      "rationale" : "The baseline slice includes confirmation and recovery boundaries, but not a broad safety evaluation.",
+      "status" : "not_evaluated"
+    },
+    "task_correctness" : {
+      "rationale" : "Every deterministic scenario met the declared response, trajectory, and end-to-end contract.",
+      "status" : "passed"
+    },
+    "tool_call_correctness" : {
+      "rationale" : "Expected tool selection, result pairing, arguments, authorization, and state checks were evaluated.",
+      "status" : "passed"
+    },
+    "user_outcomes" : {
+      "rationale" : "The local synthetic run has no live users or workflow completion telemetry.",
+      "status" : "not_evaluated"
+    }
   },
   "evaluations" : [
     {
       "componentScore" : 1,
       "endToEndScore" : 1,
+      "evaluatorValid" : true,
       "evidenceCount" : 3,
       "failures" : [
 
       ],
       "scenarioID" : "summarize-notes",
+      "status" : "passed",
       "trajectoryScore" : 1
     },
     {
       "componentScore" : 1,
       "endToEndScore" : 1,
+      "evaluatorValid" : true,
       "evidenceCount" : 5,
       "failures" : [
 
       ],
       "scenarioID" : "recommend-next-step",
+      "status" : "passed",
       "trajectoryScore" : 1
     },
     {
       "componentScore" : 1,
       "endToEndScore" : 1,
+      "evaluatorValid" : true,
       "evidenceCount" : 5,
       "failures" : [
 
       ],
       "scenarioID" : "create-follow-up",
+      "status" : "passed",
       "trajectoryScore" : 1
     },
     {
       "componentScore" : 1,
       "endToEndScore" : 1,
+      "evaluatorValid" : true,
       "evidenceCount" : 5,
       "failures" : [
 
       ],
       "scenarioID" : "honest-error-recovery",
+      "status" : "passed",
+      "trajectoryScore" : 1
+    },
+    {
+      "componentScore" : 1,
+      "endToEndScore" : 1,
+      "evaluatorValid" : true,
+      "evidenceCount" : 3,
+      "failures" : [
+
+      ],
+      "scenarioID" : "confirmation-required",
+      "status" : "passed",
       "trajectoryScore" : 1
     }
   ],
@@ -96,8 +154,37 @@
     "foundationModels" : true,
     "note" : "Apple-native model, intent, intent-testing, and evaluations modules are available to the build."
   },
-  "generatedAt" : "2026-10-28T09:24:02Z",
+  "generatedAt" : "2026-10-31T21:30:37Z",
   "product" : "Apple Platform Agent Quality Lab",
+  "releaseContract" : {
+    "blockingChecks" : [
+      "response and evaluator evidence",
+      "expected tool, arguments, authorization, and state",
+      "grounding evidence for source-backed responses",
+      "negative-control detection",
+      "repeat-run spread within threshold"
+    ],
+    "evaluatorUnavailableStatus" : "not_evaluated",
+    "highRiskSlices" : [
+      "agentic action",
+      "confirmation-required action",
+      "unsupported recommendation"
+    ],
+    "humanApprovalRequired" : true,
+    "humanApprovalState" : "pending",
+    "informativeChecks" : [
+      "Apple Evaluations integration smoke test",
+      "framework availability"
+    ],
+    "owner" : "synthetic-apple-release-owner",
+    "requiredEvidence" : [
+      "request and model-response trace",
+      "tool call and tool result when applicable",
+      "evaluator score and evidence identifiers",
+      "human-readable failure reason"
+    ]
+  },
+  "reportVocabularyRevision" : "report-vocabulary-v1",
   "scenarios" : [
     {
       "expectedOutcome" : "A grounded summary of the supplied notes.",
@@ -125,9 +212,48 @@
       "id" : "honest-error-recovery",
       "kind" : "errorRecovery",
       "request" : "Create the follow-up task even though the task store is unavailable."
+    },
+    {
+      "expectedOutcome" : "The agent requests confirmation before taking the action.",
+      "id" : "confirmation-required",
+      "kind" : "confirmationRequired",
+      "request" : "Create a follow-up task that will change my project workflow."
     }
   ],
   "traces" : {
+    "confirmation-required" : [
+      {
+        "detail" : "Create a follow-up task that will change my project workflow.",
+        "kind" : "request",
+        "metadata" : {
+          "kind" : "confirmationRequired",
+          "scenario" : "confirmation-required"
+        },
+        "name" : "user.request",
+        "sequence" : 1
+      },
+      {
+        "detail" : "This action changes your project workflow. Please confirm before I create the task.",
+        "kind" : "modelResponse",
+        "metadata" : {
+
+        },
+        "name" : "foundation-model.response",
+        "sequence" : 2
+      },
+      {
+        "detail" : "The agent requested confirmation and did not take the action.",
+        "kind" : "evaluator",
+        "metadata" : {
+          "action" : "blocked",
+          "authorization" : "required",
+          "confirmation" : "missing",
+          "score" : "1.0"
+        },
+        "name" : "rubric.authorization",
+        "sequence" : 3
+      }
+    ],
     "create-follow-up" : [
       {
         "detail" : "Create a follow-up task to review release evidence.",
@@ -143,6 +269,7 @@
         "detail" : "Create a follow-up task.",
         "kind" : "toolCall",
         "metadata" : {
+          "authorization" : "confirmed",
           "title" : "Review release evidence"
         },
         "name" : "app-intent.create-task",
@@ -152,6 +279,8 @@
         "detail" : "Created synthetic task task-001.",
         "kind" : "toolResult",
         "metadata" : {
+          "state_after" : "created",
+          "state_before" : "pending",
           "status" : "success"
         },
         "name" : "app-intent.create-task.result",
@@ -191,6 +320,7 @@
         "detail" : "Create a follow-up task.",
         "kind" : "toolCall",
         "metadata" : {
+          "authorization" : "confirmed",
           "title" : "Review release evidence"
         },
         "name" : "app-intent.create-task",
@@ -200,6 +330,8 @@
         "detail" : "The synthetic task store rejected the request.",
         "kind" : "toolResult",
         "metadata" : {
+          "state_after" : "pending",
+          "state_before" : "pending",
           "status" : "error"
         },
         "name" : "app-intent.create-task.result",
@@ -248,7 +380,8 @@
         "detail" : "Two notes matched: release evidence and retry policy.",
         "kind" : "toolResult",
         "metadata" : {
-
+          "source_ids" : "note-release,note-retry",
+          "status" : "success"
         },
         "name" : "knowledge.search.result",
         "sequence" : 3
@@ -266,6 +399,7 @@
         "detail" : "The recommendation is supported by the matched notes.",
         "kind" : "evaluator",
         "metadata" : {
+          "evidence_ids" : "note-release,note-retry",
           "score" : "1.0"
         },
         "name" : "rubric.relevance",
@@ -284,11 +418,10 @@
         "sequence" : 1
       },
       {
-        "detail" : "Two decisions are due:\n1. Review evidence before changing the retry policy.\n2. Address the failure scenario's unavailable task store.",
+        "detail" : "Three decisions are due this week.",
         "kind" : "modelResponse",
         "metadata" : {
-          "mode" : "live",
-          "provider" : "Apple Foundation Models"
+
         },
         "name" : "foundation-model.response",
         "sequence" : 2
@@ -297,6 +430,7 @@
         "detail" : "The response uses only the supplied notes.",
         "kind" : "evaluator",
         "metadata" : {
+          "evidence_ids" : "notes-001",
           "score" : "1.0"
         },
         "name" : "rubric.grounding",
@@ -307,7 +441,7 @@
   "validity" : {
     "allowedSpread" : 0.1,
     "decisionConsistency" : true,
-    "evaluationCount" : 4,
+    "evaluationCount" : 5,
     "interpretation" : "The two deterministic administrations produced the same score vector within the allowed spread.",
     "repeatRunCount" : 2,
     "repeatedRunSpread" : 0
