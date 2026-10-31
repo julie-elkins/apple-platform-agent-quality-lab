@@ -148,3 +148,21 @@ The negative-control command is expected to exit with status 1.
 - `scripts/build-app.sh`: Xcode-first app packaging with SwiftPM fallback.
 - `docs/INTERVIEW_WALKTHROUGH.md`: recommended interview demonstration.
 - `docs/XCODE_INTEGRATION.md`: Xcode and runtime-boundary notes.
+
+## Hiring-manager preparation alignment
+
+On October 31, 2026, Julie shared a private Google Docs hiring-manager
+preparation document for the Apple AI Evaluations Engineer conversation. It was
+read read-only and was not edited or copied into an external system.
+
+The preparation document confirms that the project should be presented as an
+evaluation and quality-gate artifact, not as a claim of model research or
+production Siri quality. Its strongest recurring concepts are the evaluation
+contract, outcome/action/evidence correctness, trajectory inspection,
+nondeterministic-run variation, evaluator health, negative controls, and an
+honest release gate.
+
+`docs/INTERVIEW_WALKTHROUGH.md` now includes a short bridge from the demo to
+Julie’s AWS Certification and AI-evaluation experience, plus the boundary
+statement that the artifact demonstrates the evaluation method without
+claiming unrestricted production reliability.
