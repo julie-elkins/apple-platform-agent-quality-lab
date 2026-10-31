@@ -77,6 +77,10 @@ or personal data.
   window and the local steps plus return button in Local Data Mode.
 - The refreshed main window visibly exposes an app-level vertical scrollbar,
   confirming that the full workflow remains reachable below the monitor fold.
+- The complete guided walkthrough was run in the packaged app: `README.md`
+  loaded in Local Data Mode, local evaluation returned `PASS` with 5 evidence
+  events, `Return to Quality Lab` worked, and the main Quality Lab remained at
+  the restored baseline `PASS`.
 - The packaged app includes an `Open local data mode` button. The separate
   window was visually verified with its read-only safety explanation, file
   picker, source preview, result, evaluation-details, and evidence-trace
