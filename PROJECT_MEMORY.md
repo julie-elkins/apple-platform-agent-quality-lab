@@ -166,3 +166,16 @@ honest release gate.
 Julie’s AWS Certification and AI-evaluation experience, plus the boundary
 statement that the artifact demonstrates the evaluation method without
 claiming unrestricted production reliability.
+
+## Public repository
+
+On October 31, 2026, the complete project was staged by explicit path,
+committed as `cc8043f` (`Initial Apple platform agent quality lab`), and pushed
+to the public GitHub repository:
+
+`https://github.com/julie-elkins/apple-platform-agent-quality-lab`
+
+The repository's `main` branch tracks `origin/main`. The public commit includes
+the SwiftPM package, Xcode project, native app, tests, Apple integration
+boundary, local-data mode, report, build script, and interview documentation.
+Generated build directories remain excluded by `.gitignore`.
