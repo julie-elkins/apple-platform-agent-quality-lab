@@ -19,8 +19,14 @@ visible:
 - A pooled score can hide a failing family.
 - A judge or evaluator must be checked as an instrument, not treated as truth.
 - A release gate must distinguish `FAIL` from `RERUN REQUIRED`.
+- Framework availability is an environment boundary, not a quality pass.
 
 The current deterministic scenarios repeat exactly, so the observed spread is
 `0.0`. The live Foundation Models probe is deliberately not used as the
 release gate because a variable model response needs a larger, repeated
 evaluation design before it can support that decision.
+
+The report also keeps separate dimensions for task correctness, safety,
+tool-call correctness, latency, cost, user outcomes, and evaluator validity.
+Dimensions that the local synthetic slice does not measure are reported as
+`not_evaluated` rather than receiving an invented score.

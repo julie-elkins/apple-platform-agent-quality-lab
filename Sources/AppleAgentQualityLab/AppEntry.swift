@@ -1,5 +1,83 @@
 import Foundation
 
+private let reportVocabularyRevision = "report-vocabulary-v1"
+
+private func releaseContract() -> ReleaseContract {
+    ReleaseContract(
+        blockingChecks: [
+            "response and evaluator evidence",
+            "expected tool, arguments, authorization, and state",
+            "grounding evidence for source-backed responses",
+            "negative-control detection",
+            "repeat-run spread within threshold"
+        ],
+        informativeChecks: [
+            "Apple Evaluations integration smoke test",
+            "framework availability"
+        ],
+        requiredEvidence: [
+            "request and model-response trace",
+            "tool call and tool result when applicable",
+            "evaluator score and evidence identifiers",
+            "human-readable failure reason"
+        ],
+        highRiskSlices: [
+            "agentic action",
+            "confirmation-required action",
+            "unsupported recommendation"
+        ],
+        evaluatorUnavailableStatus: .notEvaluated,
+        humanApprovalRequired: true,
+        humanApprovalState: "pending",
+        owner: "synthetic-apple-release-owner"
+    )
+}
+
+private func reportDimensions(
+    results: [EvaluationResult]
+) -> [String: DimensionEvidence] {
+    let allPassed = !results.isEmpty && results.allSatisfy(\.passed)
+    let allTrajectoriesPassed = !results.isEmpty &&
+        results.allSatisfy { $0.trajectoryScore >= 0.8 }
+    let allEvaluatorsValid = !results.isEmpty &&
+        results.allSatisfy(\.evaluatorValid)
+
+    return [
+        "task_correctness": DimensionEvidence(
+            status: allPassed ? .passed : .failed,
+            rationale: allPassed
+                ? "Every deterministic scenario met the declared response, trajectory, and end-to-end contract."
+                : "At least one scenario did not meet the declared task contract."
+        ),
+        "safety": DimensionEvidence(
+            status: .notEvaluated,
+            rationale: "The baseline slice includes confirmation and recovery boundaries, but not a broad safety evaluation."
+        ),
+        "tool_call_correctness": DimensionEvidence(
+            status: allTrajectoriesPassed ? .passed : .failed,
+            rationale: "Expected tool selection, result pairing, arguments, authorization, and state checks were evaluated."
+        ),
+        "latency": DimensionEvidence(
+            status: .notEvaluated,
+            rationale: "The local synthetic run does not measure a production latency target."
+        ),
+        "cost": DimensionEvidence(
+            status: .notEvaluated,
+            rationale: "The local synthetic run does not make billable model calls."
+        ),
+        "user_outcomes": DimensionEvidence(
+            status: .notEvaluated,
+            rationale: "The local synthetic run has no live users or workflow completion telemetry."
+        ),
+        "evaluator_validity": DimensionEvidence(
+            status: allEvaluatorsValid ? .passed : .failed,
+            rationale: allEvaluatorsValid
+                ? "Every evaluator event carried a parseable score and required evidence metadata."
+                : "At least one evaluator event was missing a valid score or evidence metadata."
+        )
+    ]
+}
+
 @main
 struct AppleAgentQualityLabMain {
     static func main() async throws {
@@ -18,7 +96,7 @@ struct AppleAgentQualityLabMain {
         let includeNegativeControl = CommandLine.arguments.contains("--negative-control")
         var scenarios = demoScenarios()
         if includeNegativeControl {
-            scenarios.append(negativeControlScenario())
+            scenarios.append(contentsOf: negativeControlScenarios())
         }
         let useLiveFoundationModel = CommandLine.arguments.contains("--live-foundation-model")
         let agent = SyntheticAppleAgent()
@@ -137,10 +215,13 @@ struct AppleAgentQualityLabMain {
         let report = RunReport(
             product: "Apple Platform Agent Quality Lab",
             generatedAt: ISO8601DateFormatter().string(from: Date()),
+            reportVocabularyRevision: reportVocabularyRevision,
             frameworkAvailability: AppleFrameworkAvailabilityProvider.current,
             scenarios: scenarios,
             traces: traces,
             evaluations: results,
+            releaseContract: releaseContract(),
+            dimensions: reportDimensions(results: results),
             validity: validity,
             decision: decision,
             appleEvaluations: AppleEvaluationsAdapter.summarize(

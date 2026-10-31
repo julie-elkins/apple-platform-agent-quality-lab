@@ -160,7 +160,7 @@ public enum AppleEvaluationsAdapter {
                         rationale: $0.rationale
                     )
                 },
-                note: "Evaluated with Apple's Evaluations.Metric and Evaluator APIs; the custom gate remains authoritative."
+            note: "Apple Evaluations integration smoke test matched the local score vector; it is supplemental and the custom gate remains authoritative."
             )
         } catch {
             return AppleScenarioEvaluation(

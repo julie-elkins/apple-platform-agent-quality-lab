@@ -162,7 +162,10 @@ public struct LocalDataAgent: Sendable {
                 kind: .evaluator,
                 name: "rubric.grounding",
                 detail: "The response is evaluated against the selected local source.",
-                metadata: ["score": "1.0"]
+                metadata: [
+                    "score": "1.0",
+                    "evidence_ids": document.sourceName
+                ]
             )
         ]
         return (response, traces)

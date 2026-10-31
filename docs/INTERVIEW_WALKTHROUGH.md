@@ -96,17 +96,18 @@ Click **Run baseline evaluation**.
 Point out:
 
 - `Release gate: PASS`;
-- 4 scenarios;
-- 4 passed;
+- 5 scenarios;
+- 5 passed;
 - 0 failed;
 - 0 expected failures.
 
-The four normal scenarios are:
+The five normal scenarios are:
 
 - summarization;
 - grounded recommendation;
 - App-Intent-shaped task creation;
-- honest error recovery.
+- honest error recovery;
+- confirmation required before a state-changing action.
 
 Say:
 
@@ -136,17 +137,18 @@ Click **Run negative control — expected FAIL**.
 Point out:
 
 - `Release gate: FAIL`;
-- 5 scenarios;
-- 4 passed;
-- 1 failed;
-- 1 expected failure;
-- the highlighted `negative-control-wrong-tool` trace.
+- 7 scenarios;
+- 5 passed;
+- 2 failed;
+- 2 expected failures;
+- the highlighted wrong-tool and unsupported-recommendation traces.
 
 Say:
 
-> “This is a deliberately incorrect path. The agent uses `knowledge.search`
-> instead of the task-creation intent, then claims the task was created. The
-> gate rejects it because the trajectory does not prove the requested action.”
+> “These are deliberately incorrect paths. The agent uses `knowledge.search`
+> instead of the task-creation intent and also makes a recommendation without
+> supporting evidence. The gate rejects both because the observed trajectory
+> and grounding evidence do not support the claims.”
 
 Read the remediation panel:
 
@@ -166,14 +168,14 @@ Click **Run baseline again — restore PASS**.
 Point out:
 
 - `Release gate: PASS`;
-- 4 scenarios;
-- 4 passed;
+- 5 scenarios;
+- 5 passed;
 - run history: baseline `PASS` → negative control `FAIL` as expected →
   baseline `PASS restored`.
 
 Say:
 
-> “This PASS is a fresh four-scenario run. It did not repair the failed run;
+> “This PASS is a fresh five-scenario run. It did not repair the failed run;
 > the intentionally bad scenario was simply not included. The history keeps
 > both facts visible.”
 

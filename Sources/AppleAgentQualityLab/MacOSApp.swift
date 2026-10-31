@@ -8,7 +8,7 @@ final class QualityLabViewController: NSViewController {
     private let statusLabel = NSTextField(labelWithString: "Release gate: NOT RUN")
     private let reasonLabel = NSTextField(labelWithString: "Run the evaluation to inspect the release decision.")
     private let resultMeaningLabel = NSTextField(
-        wrappingLabelWithString: "Start with the baseline evaluation. It runs the four normal scenarios."
+        wrappingLabelWithString: "Start with the baseline evaluation. It runs the five normal scenarios."
     )
     private let runSummaryLabel = NSTextField(
         wrappingLabelWithString: "Mode: No run yet\nScenarios: —  Passed: —  Failed: —  Expected failures: —"
@@ -100,8 +100,8 @@ final class QualityLabViewController: NSViewController {
         let buttonGuideTitle = makeSectionTitle("What the buttons do")
         let buttonGuideBox = makeInfoBox(
             text: """
-            Run baseline evaluation runs the four normal scenarios. Run negative control
-            adds one deliberately incorrect tool path and is expected to show FAIL. It
+            Run baseline evaluation runs the five normal scenarios. Run negative control
+            adds two deliberately incorrect paths and is expected to show FAIL. It
             does not change or repair the application. Open local data mode evaluates a
             selected Markdown or JSON file in a separate read-only window.
             """,
@@ -228,7 +228,7 @@ final class QualityLabViewController: NSViewController {
         let agent = SyntheticAppleAgent()
         var scenarios = demoScenarios()
         if includeNegativeControl {
-            scenarios.append(negativeControlScenario())
+            scenarios.append(contentsOf: negativeControlScenarios())
         }
 
         var tracesByScenario: [String: [TraceEvent]] = [:]
@@ -257,10 +257,10 @@ final class QualityLabViewController: NSViewController {
         Scenarios: \(evaluations.count)  Passed: \(passedCount)  Failed: \(failedCount)  Expected failures: \(expectedFailureCount)
         """
         if includeNegativeControl {
-            resultMeaningLabel.stringValue = "This FAIL is intentional. The negative control adds one known-bad scenario; it does not change or repair the application. Run baseline again to start a fresh four-scenario run and restore PASS."
+            resultMeaningLabel.stringValue = "This FAIL is intentional. The negative-control run adds two known-bad scenarios; it does not change or repair the application. Run baseline again to start a fresh five-scenario run and restore PASS."
             remediationLabel.stringValue = """
-            Failure: the agent used knowledge.search instead of the task-creation intent and claimed the task was created.
-            Recommended remediation: route task-creation requests to CreateFollowUpIntent and require a successful tool result before claiming completion.
+            Failures: the agent used knowledge.search instead of the task-creation intent and claimed the task was created; a second path made a recommendation without supporting evidence.
+            Recommended remediation: route task-creation requests to CreateFollowUpIntent, require a successful state-changing result before claiming completion, and require evidence before making a recommendation.
             Next step: review the recommendation, then run baseline again. This app does not change its own code.
             """
             negativeButton.title = "Run negative control — expected FAIL"
@@ -270,7 +270,7 @@ final class QualityLabViewController: NSViewController {
         } else {
             resultMeaningLabel.stringValue = lastRunWasNegativeControl
                 ? "This PASS is a fresh baseline run. The negative control was not included, so no repair was needed; the test-only failure was removed from this run."
-                : "This PASS means all four normal scenarios met the response, trajectory, and end-to-end thresholds. Read the trace below to see the evidence for each decision."
+                : "This PASS means all five normal scenarios met the response, trajectory, and end-to-end thresholds. Read the trace below to see the evidence for each decision."
             remediationLabel.stringValue = lastRunWasNegativeControl
                 ? "The previous failure was the intentional negative control. No application code was changed. The clean baseline now passes, while the negative control remains available to verify that the evaluator still catches the known-bad path."
                 : "No failure was detected in this baseline run. If a real failure appears, this panel will describe the observed problem, recommend a corrective action, and tell you what to rerun."
