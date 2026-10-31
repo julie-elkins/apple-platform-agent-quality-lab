@@ -1,0 +1,373 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B001 /* AppleFoundationModelAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F001; };
+		B002 /* AppleFrameworkAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F002; };
+		B003 /* DemoScenarios.swift in Sources */ = {isa = PBXBuildFile; fileRef = F003; };
+		B004 /* EvaluationGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F004; };
+		B005 /* ExampleAppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005; };
+		B006 /* MacOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F006; };
+		B007 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = F007; };
+		B008 /* SyntheticAppleAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F008; };
+		B009 /* AppEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = F009; };
+		B010 /* AppleIntentsIntegration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F012; };
+		B011 /* AppleEvaluationsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F013; };
+		B012 /* LocalDataMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F014; };
+		B013 /* LocalDataWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = F015; };
+		T001 /* AppleAgentQualityLabIntentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F011; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = P001;
+			proxyType = 1;
+			remoteGlobalIDString = 222222222222222222222222;
+			remoteInfo = ApplePlatformAgentQualityLab;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F001 /* AppleFoundationModelAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleFoundationModelAgent.swift; sourceTree = "<group>"; };
+		F002 /* AppleFrameworkAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleFrameworkAvailability.swift; sourceTree = "<group>"; };
+		F003 /* DemoScenarios.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoScenarios.swift; sourceTree = "<group>"; };
+		F004 /* EvaluationGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationGate.swift; sourceTree = "<group>"; };
+		F005 /* ExampleAppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAppIntent.swift; sourceTree = "<group>"; };
+		F006 /* MacOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSApp.swift; sourceTree = "<group>"; };
+		F007 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		F008 /* SyntheticAppleAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntheticAppleAgent.swift; sourceTree = "<group>"; };
+		F009 /* AppEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntry.swift; sourceTree = "<group>"; };
+		F010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppResources/Info.plist; sourceTree = "<group>"; };
+		F011 /* AppleAgentQualityLabIntentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAgentQualityLabIntentTests.swift; sourceTree = "<group>"; };
+		F012 /* AppleIntentsIntegration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIntentsIntegration.swift; sourceTree = "<group>"; };
+		F013 /* AppleEvaluationsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleEvaluationsAdapter.swift; sourceTree = "<group>"; };
+		F014 /* LocalDataMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataMode.swift; sourceTree = "<group>"; };
+		F015 /* LocalDataWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataWindow.swift; sourceTree = "<group>"; };
+		P002 /* Apple Platform Agent Quality Lab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Apple Platform Agent Quality Lab.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		P003 /* AppleAgentQualityLabIntentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppleAgentQualityLabIntentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		999 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CCC /* Test Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		444 /* Main group */ = {
+			isa = PBXGroup;
+			children = (
+				555 /* Sources */,
+				666 /* XcodeIntegration */,
+				777 /* AppResources */,
+				888 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		555 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F001,
+				F002,
+				F003,
+				F004,
+				F005,
+				F006,
+				F007,
+				F008,
+				F009,
+				F012,
+				F013,
+				F014,
+				F015,
+			);
+			path = Sources/AppleAgentQualityLab;
+			sourceTree = "<group>";
+		};
+		666 /* XcodeIntegration */ = {
+			isa = PBXGroup;
+			children = (
+				F011,
+			);
+			path = XcodeIntegration;
+			sourceTree = "<group>";
+		};
+		777 /* AppResources */ = {
+			isa = PBXGroup;
+			children = (
+				F010,
+			);
+			path = AppResources;
+			sourceTree = "<group>";
+		};
+		888 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				P002,
+				P003,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		222222222222222222222222 /* ApplePlatformAgentQualityLab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = L002;
+			buildPhases = (
+				AAA,
+				999,
+				BBB,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ApplePlatformAgentQualityLab;
+			productName = "Apple Platform Agent Quality Lab";
+			productReference = P002;
+			productType = "com.apple.product-type.application";
+		};
+		333333333333333333333333 /* AppleAgentQualityLabIntentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = L003;
+			buildPhases = (
+				DDD,
+				CCC,
+				EEE,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFF,
+			);
+			name = AppleAgentQualityLabIntentTests;
+			productName = AppleAgentQualityLabIntentTests;
+			productReference = P003;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		P001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					222222222222222222222222 = {
+						CreatedOnToolsVersion = 27.1;
+					};
+					333333333333333333333333 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = 222222222222222222222222;
+					};
+				};
+			};
+			buildConfigurationList = L001;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 444;
+			productRefGroup = 888;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				222222222222222222222222,
+				333333333333333333333333,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BBB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEE /* Test Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B001,
+				B002,
+				B003,
+				B004,
+				B005,
+				B006,
+				B007,
+				B008,
+				B009,
+				B010,
+				B011,
+				B012,
+				B013,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDD /* Test Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				T001,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FFF /* App dependency */ = {
+			isa = PBXTargetDependency;
+			target = 222222222222222222222222;
+			targetProxy = E001;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C001 /* Project Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		C002 /* Project Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		C003 /* App Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				INFOPLIST_FILE = AppResources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				EXECUTABLE_NAME = apple-agent-quality-lab;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julieelkins.apple-agent-quality-lab;
+				PRODUCT_NAME = "Apple Platform Agent Quality Lab";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		C004 /* App Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				INFOPLIST_FILE = AppResources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				EXECUTABLE_NAME = apple-agent-quality-lab;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julieelkins.apple-agent-quality-lab;
+				PRODUCT_NAME = "Apple Platform Agent Quality Lab";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		C005 /* Tests Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julieelkins.apple-agent-quality-lab.intent-tests;
+				PRODUCT_MODULE_NAME = AppleAgentQualityLabIntentTests;
+				SWIFT_VERSION = 6.0;
+				TEST_TARGET_NAME = ApplePlatformAgentQualityLab;
+			};
+			name = Debug;
+		};
+		C006 /* Tests Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.julieelkins.apple-agent-quality-lab.intent-tests;
+				PRODUCT_MODULE_NAME = AppleAgentQualityLabIntentTests;
+				SWIFT_VERSION = 6.0;
+				TEST_TARGET_NAME = ApplePlatformAgentQualityLab;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		L001 /* Project configuration list */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C001,
+				C002,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		L002 /* App configuration list */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C003,
+				C004,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		L003 /* Tests configuration list */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C005,
+				C006,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = P001;
+}

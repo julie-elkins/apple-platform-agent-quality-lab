@@ -1,0 +1,315 @@
+{
+  "appleEvaluations" : {
+    "availability" : "unavailable",
+    "note" : "Apple Evaluations was not runtime-available; the custom release gate remains authoritative.",
+    "passedMetrics" : 0,
+    "scenarios" : [
+      {
+        "availability" : "unavailable",
+        "metrics" : [
+
+        ],
+        "note" : "Apple Evaluations requires macOS 27.0; the custom gate remains authoritative.",
+        "scenarioID" : "summarize-notes"
+      },
+      {
+        "availability" : "unavailable",
+        "metrics" : [
+
+        ],
+        "note" : "Apple Evaluations requires macOS 27.0; the custom gate remains authoritative.",
+        "scenarioID" : "recommend-next-step"
+      },
+      {
+        "availability" : "unavailable",
+        "metrics" : [
+
+        ],
+        "note" : "Apple Evaluations requires macOS 27.0; the custom gate remains authoritative.",
+        "scenarioID" : "create-follow-up"
+      },
+      {
+        "availability" : "unavailable",
+        "metrics" : [
+
+        ],
+        "note" : "Apple Evaluations requires macOS 27.0; the custom gate remains authoritative.",
+        "scenarioID" : "honest-error-recovery"
+      }
+    ],
+    "totalMetrics" : 0
+  },
+  "decision" : {
+    "minimumObservedScore" : 1,
+    "passedScenarios" : 4,
+    "reason" : "All scenarios met the response, trajectory, and end-to-end thresholds.",
+    "repeatedRunSpread" : 0,
+    "status" : "PASS",
+    "totalScenarios" : 4
+  },
+  "evaluations" : [
+    {
+      "componentScore" : 1,
+      "endToEndScore" : 1,
+      "evidenceCount" : 3,
+      "failures" : [
+
+      ],
+      "scenarioID" : "summarize-notes",
+      "trajectoryScore" : 1
+    },
+    {
+      "componentScore" : 1,
+      "endToEndScore" : 1,
+      "evidenceCount" : 5,
+      "failures" : [
+
+      ],
+      "scenarioID" : "recommend-next-step",
+      "trajectoryScore" : 1
+    },
+    {
+      "componentScore" : 1,
+      "endToEndScore" : 1,
+      "evidenceCount" : 5,
+      "failures" : [
+
+      ],
+      "scenarioID" : "create-follow-up",
+      "trajectoryScore" : 1
+    },
+    {
+      "componentScore" : 1,
+      "endToEndScore" : 1,
+      "evidenceCount" : 5,
+      "failures" : [
+
+      ],
+      "scenarioID" : "honest-error-recovery",
+      "trajectoryScore" : 1
+    }
+  ],
+  "frameworkAvailability" : {
+    "appIntents" : true,
+    "appIntentsTesting" : true,
+    "evaluations" : true,
+    "foundationModels" : true,
+    "note" : "Apple-native model, intent, intent-testing, and evaluations modules are available to the build."
+  },
+  "generatedAt" : "2026-10-28T09:24:02Z",
+  "product" : "Apple Platform Agent Quality Lab",
+  "scenarios" : [
+    {
+      "expectedOutcome" : "A grounded summary of the supplied notes.",
+      "id" : "summarize-notes",
+      "kind" : "summarization",
+      "request" : "Summarize the open decisions in my project notes."
+    },
+    {
+      "expectedOutcome" : "A recommendation grounded in retrieved notes.",
+      "expectedTool" : "knowledge.search",
+      "id" : "recommend-next-step",
+      "kind" : "recommendation",
+      "request" : "What should I review before changing the retry policy?"
+    },
+    {
+      "expectedOutcome" : "The requested task is created.",
+      "expectedTool" : "app-intent.create-task",
+      "id" : "create-follow-up",
+      "kind" : "agenticAction",
+      "request" : "Create a follow-up task to review release evidence."
+    },
+    {
+      "expectedOutcome" : "The agent reports the failure and does not claim success.",
+      "expectedTool" : "app-intent.create-task",
+      "id" : "honest-error-recovery",
+      "kind" : "errorRecovery",
+      "request" : "Create the follow-up task even though the task store is unavailable."
+    }
+  ],
+  "traces" : {
+    "create-follow-up" : [
+      {
+        "detail" : "Create a follow-up task to review release evidence.",
+        "kind" : "request",
+        "metadata" : {
+          "kind" : "agenticAction",
+          "scenario" : "create-follow-up"
+        },
+        "name" : "user.request",
+        "sequence" : 1
+      },
+      {
+        "detail" : "Create a follow-up task.",
+        "kind" : "toolCall",
+        "metadata" : {
+          "title" : "Review release evidence"
+        },
+        "name" : "app-intent.create-task",
+        "sequence" : 2
+      },
+      {
+        "detail" : "Created synthetic task task-001.",
+        "kind" : "toolResult",
+        "metadata" : {
+          "status" : "success"
+        },
+        "name" : "app-intent.create-task.result",
+        "sequence" : 3
+      },
+      {
+        "detail" : "Created the follow-up task.",
+        "kind" : "modelResponse",
+        "metadata" : {
+
+        },
+        "name" : "foundation-model.response",
+        "sequence" : 4
+      },
+      {
+        "detail" : "The requested action was selected and completed.",
+        "kind" : "evaluator",
+        "metadata" : {
+          "score" : "1.0"
+        },
+        "name" : "rubric.tool-correctness",
+        "sequence" : 5
+      }
+    ],
+    "honest-error-recovery" : [
+      {
+        "detail" : "Create the follow-up task even though the task store is unavailable.",
+        "kind" : "request",
+        "metadata" : {
+          "kind" : "errorRecovery",
+          "scenario" : "honest-error-recovery"
+        },
+        "name" : "user.request",
+        "sequence" : 1
+      },
+      {
+        "detail" : "Create a follow-up task.",
+        "kind" : "toolCall",
+        "metadata" : {
+          "title" : "Review release evidence"
+        },
+        "name" : "app-intent.create-task",
+        "sequence" : 2
+      },
+      {
+        "detail" : "The synthetic task store rejected the request.",
+        "kind" : "toolResult",
+        "metadata" : {
+          "status" : "error"
+        },
+        "name" : "app-intent.create-task.result",
+        "sequence" : 3
+      },
+      {
+        "detail" : "I could not create the task, so I did not claim that it was created.",
+        "kind" : "modelResponse",
+        "metadata" : {
+
+        },
+        "name" : "foundation-model.response",
+        "sequence" : 4
+      },
+      {
+        "detail" : "The response reports the failure without inventing success.",
+        "kind" : "evaluator",
+        "metadata" : {
+          "score" : "1.0"
+        },
+        "name" : "rubric.error-recovery",
+        "sequence" : 5
+      }
+    ],
+    "recommend-next-step" : [
+      {
+        "detail" : "What should I review before changing the retry policy?",
+        "kind" : "request",
+        "metadata" : {
+          "kind" : "recommendation",
+          "scenario" : "recommend-next-step"
+        },
+        "name" : "user.request",
+        "sequence" : 1
+      },
+      {
+        "detail" : "Search local synthetic project notes.",
+        "kind" : "toolCall",
+        "metadata" : {
+          "query" : "active project risks"
+        },
+        "name" : "knowledge.search",
+        "sequence" : 2
+      },
+      {
+        "detail" : "Two notes matched: release evidence and retry policy.",
+        "kind" : "toolResult",
+        "metadata" : {
+
+        },
+        "name" : "knowledge.search.result",
+        "sequence" : 3
+      },
+      {
+        "detail" : "Review release evidence before changing retry policy.",
+        "kind" : "modelResponse",
+        "metadata" : {
+
+        },
+        "name" : "foundation-model.response",
+        "sequence" : 4
+      },
+      {
+        "detail" : "The recommendation is supported by the matched notes.",
+        "kind" : "evaluator",
+        "metadata" : {
+          "score" : "1.0"
+        },
+        "name" : "rubric.relevance",
+        "sequence" : 5
+      }
+    ],
+    "summarize-notes" : [
+      {
+        "detail" : "Summarize the open decisions in my project notes.",
+        "kind" : "request",
+        "metadata" : {
+          "kind" : "summarization",
+          "scenario" : "summarize-notes"
+        },
+        "name" : "user.request",
+        "sequence" : 1
+      },
+      {
+        "detail" : "Two decisions are due:\n1. Review evidence before changing the retry policy.\n2. Address the failure scenario's unavailable task store.",
+        "kind" : "modelResponse",
+        "metadata" : {
+          "mode" : "live",
+          "provider" : "Apple Foundation Models"
+        },
+        "name" : "foundation-model.response",
+        "sequence" : 2
+      },
+      {
+        "detail" : "The response uses only the supplied notes.",
+        "kind" : "evaluator",
+        "metadata" : {
+          "score" : "1.0"
+        },
+        "name" : "rubric.grounding",
+        "sequence" : 3
+      }
+    ]
+  },
+  "validity" : {
+    "allowedSpread" : 0.1,
+    "decisionConsistency" : true,
+    "evaluationCount" : 4,
+    "interpretation" : "The two deterministic administrations produced the same score vector within the allowed spread.",
+    "repeatRunCount" : 2,
+    "repeatedRunSpread" : 0
+  }
+}
