@@ -13,6 +13,14 @@ Command Line Tools. It uses deterministic synthetic scenarios so a reviewer can
 inspect the evaluation contract without credentials, network access, or personal
 Apple data.
 
+## Feedback
+
+If you use the lab, use the public
+[learner feedback issue form](https://github.com/julie-elkins/apple-platform-agent-quality-lab/issues/new?template=learner-feedback.yml).
+Feedback is used to improve clarity, accessibility, and lab instructions. Do
+not include personal, confidential, private learner, exam, provider, credential,
+or secret information in a public issue.
+
 ## What it evaluates
 
 - Response evidence for summarization.
